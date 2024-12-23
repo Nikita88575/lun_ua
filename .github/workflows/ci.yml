@@ -1,0 +1,48 @@
+name: Python CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run mypy
+      run: mypy .
+
+    - name: Run black
+      run: black --check .
+
+    - name: Run isort
+      run: isort --check-only .
+
+    - name: Check coverage
+      run: |
+        coverage run -m pytest
+        coverage report --fail-under=80
+        coverage xml
+      env:
+        DJANGO_SETTINGS_MODULE: lun_ua.settings
