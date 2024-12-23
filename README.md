@@ -41,14 +41,14 @@ Run tests
 
 ## Internalization
 
-1. Install gettext on Linux
-   `sudo apt install gettext`
-   Install gettext om MacOS
-   `brew install gettext`
-2. Make messages
-   `python manage.py makemessages -l uk --ignore=venv`
-3. Compile messages  
-   `python manage.py compilemessages -l uk --ignore=venv`
+Install gettext on Linux
+`sudo apt install gettext`
+Install gettext om MacOS
+`brew install gettext`
+Make messages
+`python manage.py makemessages -l uk --ignore=venv`
+Compile messages  
+`python manage.py compilemessages -l uk --ignore=venv`
 
 ## Front-End
 1. Install sass https://sass-lang.com/install/
