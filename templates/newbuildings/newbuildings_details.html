@@ -1,0 +1,325 @@
+{% extends 'content.html' %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% load crispy_forms_tags %}
+
+{% block link %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="{% static 'css/newbuilding_details.css' %}">
+{% endblock %}
+
+{% block title %}
+    {{ project.title }}
+{% endblock %}
+
+
+{% block body %}
+<div class="container content">
+    <div class="contacts-column">
+        <div class="contacts-column-aside">
+            <div class="contacts-main">
+                <div class="contacts">
+                    <div class="contacts-content">
+
+                        <div id="deleteNBForm" style="display: none;">
+                            <form method="post">
+                                {% csrf_token %}
+                                <p>{% trans "Are you sure you want to delete " %} "{{ project.title }}" ?</p>
+                                <div style="display: none;">
+                                    {{ newbuilding_form }}
+                                </div>
+                                <button type="submit" class="btn waves-effect waves-light" name="delete">{% trans "Confirm" %}</button>
+                                <a href="{% url 'newbuilding:details' newbuilding_slug=project.slug %}" class="btn red waves-effect waves-light"
+                                >{% trans "Cancel" %}</a>
+                            </form>
+                        </div>
+
+                        <div id="NBDetail" style="display: block;">
+                            <div class="contacts-content-body">
+                                <div class="contacts-header">
+                                    <h1 class="title">
+                                        {{ project.title }}
+                                    </h1>
+                                </div>
+                                
+                                <div class="contacts-main-address">
+                                    <h3 class="address">
+                                        {{ project.location }}  •  {{ project.district }}  • {{ project.metro_station }}
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="contacts-details">
+                                <div class="sales-center">
+                                    <div class="sales-center-content">
+                                        <div class="contacts-avatar">
+                                            <i class="small material-icons">
+                                                phone
+                                            </i>
+                                        </div>
+                                        <div class="contacts-working-hours">
+                                            <div class="contacts-working-hours-caption">
+                                                {% trans "Sales Departament" %}
+                                            </div>
+                                            <table class="contacts-working-hours-shedule">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="hours-placeholder-caption">
+                                                            {% trans "Mon - Fri" %}:
+                                                        </td>
+                                                        <td class="hours-placeholder">
+                                                            {% for shedule in shedule %}
+                                                                {% if shedule.workdays_starts_at %}
+                                                                    {{ shedule.workdays_starts_at|date:"H:i" }} - 
+                                                                    {{ shedule.workdays_ends_at|date:"H:i" }}
+                                                                {% else %}
+                                                                    Weekend
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="hours-placeholder-caption">
+                                                            {% trans "Sat - Sun" %}:
+                                                        </td>
+                                                        <td class="hours-placeholder">
+                                                            {% for shedule in shedule %}
+                                                                {% if shedule.weekend_starts_at %}
+                                                                    {{ shedule.weekend_starts_at|date:"H:i" }} - 
+                                                                    {{ shedule.workend_ends_at|date:"H:i" }}
+                                                                {% else %}
+                                                                    Weekend
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="contacts-notes"></div>
+                                </div>
+
+                                <div class="contacts-actions">
+                                    <div class="contacts-actions-row">
+                                        <div class="contacts-action">
+                                            <a href="tel:{{ rieltor.phone_number }}" class="contacts-phone-button">
+                                                <div class="contacts-icon">
+                                                    <i class="small material-icons">
+                                                        phone
+                                                    </i>
+                                                </div>
+                                                {{ rieltor.phone_number }}
+                                            </a>
+                                        </div>
+
+                                        <div class="contacts-action">
+                                            <a href="{{ project.company_web }}" class="contacts-phone-button" target="_blank">
+                                                <div class="contacts-icon">
+                                                    <i class="small material-icons">
+                                                        web
+                                                    </i>
+                                                </div>
+                                                {{ project.company_name }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col rieltor-block">
+                    <ul>
+                        <li class="action-buttons">
+                            {% if user.is_authenticated %}
+                                {% if user.id == project.rieltor.id %}
+                                    <a href="{% url 'newbuilding:update' newbuilding_slug=project.slug %}" class="btn btn-small waves-effect waves-light">
+                                        <i class="tiny material-icons">
+                                            edit
+                                        </i>
+                                        Edit
+                                    </a>
+
+                                    <!-- <button class="btn btn-small">
+                                        <i class="tiny material-icons">
+                                            add_a_photo
+                                        </i>
+                                        Add a photo
+                                    </button> -->
+
+                                    <button class="btn btn-small" id="deleteNBBtn">
+                                        <i class="tiny material-icons">
+                                            delete
+                                        </i>
+                                        Delete
+                                    </button>
+                                {% endif %}
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="contacts-column-main">
+            
+                <div id="gallery" class="project-gallery">
+                    <div class="gallery-view">
+                        {% if photos %}
+                            {% for image in photos %}
+                                <div class="slider-item">
+                                    <img class="project-image" src="{{ image.get_image_url }}" alt="Slider Image">
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="slider-item">
+                                <img class="project-image" src="{% static 'images/default_render_uk.png' %}" alt="Default Image">
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% if photos|length > 1 %}
+                        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+
+    <section id="prices" class="project-prices section">
+        <div class="project-prices-header">
+            <div>
+                <div class="main-title">
+                    <h2>
+                        {% trans "Sale of apartmens from the developer" %}
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="project-prices-developer">
+            <div class="project-prices-developer-content">
+                <div class="project-prices-developer-title">
+                    <div class="caption">
+                        {% trans "Project from" %}:
+                    </div>
+                    
+                    <div class="project-prices-developer-name">
+                        <a href="{{ project.company_web }}">
+                            {{ project.company_name }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if info %}
+        <table class="project-prices-table">
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        {% trans "Type" %}
+                    </th>
+                    <th style="text-align: center;">
+                        {% trans "Area" %}
+                    </th>
+                    <th style="text-align: center;">
+                        {% trans "Price per m" %}<sup>2</sup>
+                    </th>
+                    <th style="text-align: center;">
+                        {% trans "Price from" %}
+                    </th>
+                    <th style="text-align: center;">
+                        {% trans "Details" %}
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for info in info %}
+                    <tr id="project-prices-tbody">
+                        <td style="text-align: center;">
+                            {{ info.apartament_type }}
+                        </td>
+            
+                        <td style="text-align: center;">
+                            {% if info.solded == info.max_area %}
+
+                            {% elif info.min_area == info.max_area %}
+                                {{ info.min_area }} m<sup>2</sup>
+                            {% else %}
+                                {{ info.min_area }} - {{ info.max_area }} m<sup>2</sup>                            
+                            {% endif %}
+                            </td>
+            
+                        <td style="text-align: center;">
+                            {% if info.min_price == info.max_price %}
+                                {% if info.min_price < 1000000 %}
+                                    {{ info.min_price|intcomma }} $/m<sup>2</sup>
+                                {% elif info.solded is true %}
+
+                                {% else %}
+                                    {{ info.min_price|intword }} $/m<sup>2</sup>
+                                {% endif %}
+                            {% else %}
+                                {% if info.min_price < 1000000 %}
+                                    {{ info.min_price|intcomma }} 
+                                {% elif info.solded is true %}
+                                    
+                                {% else %}
+                                    {{ info.min_price|intword }}
+                                {% endif %}
+                                - 
+                                {% if info.max_price < 1000000 %}
+                                    {{ info.max_price|intcomma }} $/m<sup>2</sup>
+                                {% elif info.solded is true %}
+
+                                {% else %}
+                                    {{ info.max_price|intword }} $/m<sup>2</sup>
+                                {% endif %} 
+                            {% endif %}
+                        </td>
+            
+                        <td style="text-align: center;">
+                            {% if info.min_price < 1000000 %}
+                                from $ {{ info.min_price|intcomma }}
+                            {% elif info.solded is true %}
+                                {% trans "Solded" %}
+                            {% else %}
+                                from $ {{ info.min_price|intword }}
+                            {% endif %}
+                        </td>
+            
+                        <td style="text-align: center;">
+                            <a href="{% url 'newbuilding:project-details' project.slug info.apartament_type %}">
+                                <i class="small material-icons">
+                                    navigate_next
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="row center">
+            <h1>{% trans 'Temporary no projects here' %}</h1>
+        </div>
+    {% endif %}
+
+    <div class="project-wrapper">
+    </div>
+</div>
+
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/js.min.js"></script>
+    <script src="{% static 'js/newbuildings.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}
+
+{% endblock %}

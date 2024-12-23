@@ -1,0 +1,35 @@
+select {
+    display: flex !important;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    text-align: center;
+    justify-content: center;
+    width: -moz-available !important;
+}
+
+input {
+    color: #fff !important;
+}
+
+.django-ckeditor-widget {
+    width: 100% !important;
+}
+
+.project-picture {
+    top: -30px;
+    margin-bottom: 10px;
+  }
+  
+.no-project-picture {
+    width: 100% !important;
+}
+
+.change-picture {
+    display: none;
+}
+  
+.change-picture-button {
+    margin-bottom: 2%;
+}
+  

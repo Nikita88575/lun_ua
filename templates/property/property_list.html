@@ -1,0 +1,70 @@
+{% extends 'content.html' %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/property_list.css' %}">
+{% endblock %}
+
+{% block title %}
+    {% trans "Property" %}
+{% endblock %}
+
+
+{% block body %}
+<div class="container content">
+    <!-- {% if user.is_authenticated %}
+        {% if user.is_rieltor %}
+            <div id="add-newbuilding">
+                <a href="{% url 'newbuilding:create' %}">
+                    <i class="medium material-icons">
+                        add_circle_outline
+                    </i>
+                </a>
+            </div>
+        {% else %}
+
+        {% endif %}
+    {% endif %} -->
+
+    <div class="row">
+        {% for offer in page_obj %}
+            <div class="col s12 m6 l3">
+                <div class="card">
+                    <div class="card-image">
+
+                        <a href="{% url 'property:details' property_slug=offer.slug %}">
+                            <img src='/static/images/default_render_uk.png' alt="Image">
+                        </a>
+
+                        <div class="card-text"> 
+                            <div class="title">
+                                {{ offer.title }}
+                            </div>
+
+                            <div class="location">
+                                {{ offer.location }}
+                            </div>
+
+                            <div class="price">
+                                {{ offer.price }}
+                            </div>
+                            
+                            <div class="metro_station">
+                                {{ offer.metro_station }}
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+    <div class="paginator">
+        {% include 'ui/pagination.html' %}
+    </div>
+</div>
+
+{% endblock %}

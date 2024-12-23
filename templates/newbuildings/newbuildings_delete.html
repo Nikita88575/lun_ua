@@ -1,0 +1,32 @@
+{% extends 'content.html' %}
+{% load i18n %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}
+  {% trans "Delete " %}
+{% endblock %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'css/posts.css' %}">
+{% endblock %}
+
+{% block breadcrumbs %}
+  <a href="{% url 'newbuilding:list' %}"></a>
+  / <span class="active">{{ context.project.title }}</span>
+{% endblock %}
+
+{% block content %}
+  <div id="newbuilding-delete">
+    <h1>{% trans "Delete" %} {{ context.project.title }}</h1>
+    <form method="post" class="delete-new-building-form">
+      {% csrf_token %}
+      <p>{% trans "Are you sure you want to delete " %} "{{ context.project.title }}" ?</p>
+      {{ form|crispy }}
+      <button type="submit" class="btn red waves-effect waves-light">{% trans "Confirm" %}</button>
+      <a href="{% url 'newbuilding:details' newbuilding_slug=build.slug %}" class="btn waves-effect waves-light"
+      >{% trans "Cancel" %}</a>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,80 @@
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.card-image {
+  position: relative;
+}
+
+.card-image img {
+  width: 100%;
+  min-height: 350px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background: var(--primary-bg-color) !important;
+  border: 2px solid !important;
+}
+
+.card-text {
+  position: absolute;
+  bottom: 1px;
+  left: 10px;
+  color: white;
+  padding: 5px;
+  z-index: 1;
+  max-width: 90%;
+  display: block;
+}
+
+.card-content p {
+  color: #555;
+}
+
+.company a {
+  color: #fff;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.price {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.paginator {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  margin-top: 20%;
+}
+.paginator .active-page, .paginator .inactive-page {
+  background-color: black;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 50px;
+  min-height: 50px;
+}
+.paginator .prev-page, .paginator .next-page {
+  background-color: black;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  min-width: 50px;
+  min-height: 50px;
+  display: inline-block;
+}
+
+#add-newbuilding {
+  text-align: right;
+  top: 5px;
+  position: relative;
+}/*# sourceMappingURL=newbuilding_list.css.map */
