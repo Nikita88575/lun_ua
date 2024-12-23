@@ -24,7 +24,7 @@ A simplified version of lun.ua
    `cp .env.example .env`
 1. Run migrations  
    `python3 manage.py migrate`
-1. Run server
+1. Run server   
    `python3 manage.py runserver`
 1. Open in browser http://localhost:8000
 1. Create superuser for access to admin panel http://localhost:8000/admin  
@@ -41,14 +41,14 @@ Run tests
 
 ## Internalization
 
-Install gettext on Linux
-`sudo apt install gettext`
-Install gettext om MacOS
-`brew install gettext`
-Make messages
-`python manage.py makemessages -l uk --ignore=venv`
-Compile messages  
-`python manage.py compilemessages -l uk --ignore=venv`
+Install gettext on Linux   
+`sudo apt install gettext`   
+Install gettext om MacOS   
+`brew install gettext`   
+Make messages   
+`python manage.py makemessages -l uk --ignore=venv`   
+Compile messages     
+`python manage.py compilemessages -l uk --ignore=venv`   
 
 ## Front-End
 1. Install sass https://sass-lang.com/install/
