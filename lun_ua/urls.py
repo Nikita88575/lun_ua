@@ -27,6 +27,6 @@ urlpatterns = i18n_patterns(
     path("ckeditor/", include("ckeditor_uploader.urls")),
     path("", include("core.urls")),
     path("newbuildings/", include("newbuilding.urls")),
-    path("property/", include("property.urls")),
+    path("property/", include("properties.urls")),
     prefix_default_language=False,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

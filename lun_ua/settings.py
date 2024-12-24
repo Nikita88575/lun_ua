@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "newbuilding.apps.NewbuildingConfig",
-    "property.apps.PropertyConfig",
+    "properties.apps.PropertiesConfig",
 ]
 
 MIDDLEWARE = [

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from property.models import Apartaments, Houses, Properties, PropertyPhoto
+from properties.models import Apartaments, Houses, Properties, PropertyPhoto
 
 # Register your models here.
 admin.site.register(Properties)

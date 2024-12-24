@@ -30,7 +30,7 @@ class Properties(SlugModel):
         return self.title
 
     def get_absolute_url(self) -> str:
-        return reverse("property:details", kwargs={"property_slug": self.slug})
+        return reverse("properties:details", kwargs={"property_slug": self.slug})
 
 
 class Houses(models.Model):
