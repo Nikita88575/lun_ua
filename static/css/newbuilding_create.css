@@ -1,19 +1,52 @@
+label {
+  justify-content: center;
+  padding: 0.5rem !important;
+}
+
 select {
   display: flex !important;
   background-color: transparent;
-  border: none;
   color: #fff;
+  border: revert !important;
   text-align: center;
   justify-content: center;
   width: -moz-available !important;
+  border-radius: 25px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
 }
 
-input {
+.textinput, .numberinput, .urlinput {
   color: #fff !important;
+  border: revert !important;
+  border-radius: 25px !important;
+  padding: 1.5rem !important;
+  box-sizing: border-box !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+          appearance: none;
+}
+
+.asteriskField {
+  color: #ff0000;
 }
 
 .django-ckeditor-widget {
   width: 100% !important;
+}
+
+.btn {
+  margin-top: 1.5rem !important;
 }
 
 .project-picture {

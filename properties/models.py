@@ -1,8 +1,8 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from core.models import SlugModel
 
@@ -10,7 +10,7 @@ from core.models import SlugModel
 # Create your models here.
 class Properties(SlugModel):
     title = models.CharField(max_length=128)
-    bio = RichTextUploadingField(max_length=1024)
+    bio = CKEditor5Field(max_length=1024)
     rieltor = models.ForeignKey("users.LunUser", on_delete=models.CASCADE)
     location = models.CharField(max_length=50)
     address = models.CharField(max_length=256)
@@ -30,7 +30,7 @@ class Properties(SlugModel):
         return self.title
 
     def get_absolute_url(self) -> str:
-        return reverse("property:details", kwargs={"property_slug": self.slug})
+        return reverse("properties:details", kwargs={"property_slug": self.slug})
 
 
 class Houses(models.Model):

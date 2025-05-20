@@ -1,8 +1,8 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.fields import CKEditor5Field
 
 from core.models import SlugModel
 
@@ -24,7 +24,7 @@ class NewBuildings(SlugModel):
         ),
     )
     title = models.CharField(max_length=128)
-    bio = RichTextUploadingField(max_length=1024)
+    bio = CKEditor5Field(config_name="default")
     location = models.CharField(max_length=50)
     district = models.CharField(max_length=256)
     metro_station = models.CharField(max_length=50, null=True, blank=True)

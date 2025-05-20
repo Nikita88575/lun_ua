@@ -14,7 +14,7 @@ Django==5.1.4
 django-allauth==0.62.1
 django-allauth-ui==0.3.4
 django-appconf==1.0.6
-django-ckeditor==6.7.1
+django-ckeditor-5==0.2.18
 django-crispy-forms==2.1
 django-debug-toolbar==4.4.2
 django-js-asset==2.2.0

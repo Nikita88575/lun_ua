@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views import View
 from django.views.generic import DeleteView
 
-from property.models import Apartaments, Houses, Properties
+from properties.models import Apartaments, Houses, Properties
 from users.models import LunUser, RieltorWorkShedule
 
 

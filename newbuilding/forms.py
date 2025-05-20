@@ -4,6 +4,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Column, Layout, Row, Submit
 from django import forms
 from django.utils.translation import gettext_lazy as _
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 from newbuilding.models import NewBuildings, NewBuildingsPhoto, NewBuildingsProjects
 
@@ -34,26 +35,27 @@ class NewBuildingsForm(forms.ModelForm):
             "backup_power_supply",
             "shelter",
         ]
+
         labels = {
-            "title": _("Title*"),
-            "bio": _("Bio*"),
-            "company_name": _("Company name*"),
-            "company_web": _("Company web*"),
-            "location": _("Location*"),
-            "district": _("District*"),
+            "title": _("Title"),
+            "bio": _("Bio"),
+            "company_name": _("Company name"),
+            "company_web": _("Company web"),
+            "location": _("Location"),
+            "district": _("District"),
             "metro_station": _("Metro station"),
-            "apartament_classes": _("Apartament classes*"),
+            "apartament_classes": _("Apartament classes"),
             "houses_count": _("Houses count"),
-            "floors_variables": _("Floors variables*"),
+            "floors_variables": _("Floors variables"),
             "construction_tec": _("Construction technology"),
             "walls": _("Walls"),
             "walls_insulation": _("Walls insulation"),
             "project_heating": _("Project heating"),
-            "ceiling_height": _("Ceiling height*"),
-            "housing_condition": _("Housing condition*"),
+            "ceiling_height": _("Ceiling height"),
+            "housing_condition": _("Housing condition"),
             "apartament_count": _("Apartament count"),
             "parking": _("Parking"),
-            "parking_places": _("Parking places*"),
+            "parking_places": _("Parking places"),
             "backup_power_supply": _("Reserve power supply"),
             "shelter": _("Shelter"),
         }
@@ -86,13 +88,13 @@ class NewBuildingsForm(forms.ModelForm):
                 Column("project_heating", css_class="col s12"),
             ),
             Row(
-                Column("ceiling_height", css_class="col s6"),
-                Column("housing_condition", css_class="col s6"),
+                Column("ceiling_height", css_class="col s12"),
+                Column("housing_condition", css_class="col s12"),
                 Column("apartament_count", css_class="col s12"),
             ),
             Row(
-                Column("parking", css_class="col s6"),
-                Column("parking_places", css_class="col s6"),
+                Column("parking", css_class="col s12"),
+                Column("parking_places", css_class="col s12 "),
             ),
             Row(
                 Column("backup_power_supply", css_class="col s12"),
