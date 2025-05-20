@@ -1,0 +1,56 @@
+.ck.ck-editor__main > .ck-editor__editable, .ck.ck-toolbar {
+  background: transparent;
+}
+
+.ck-editor-container > .word-count, .ck-balloon-panel_position_border-side_right {
+  display: none !important;
+}
+
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+  border-color: #ffffff !important;
+}
+
+.ck-button, .ck-off {
+  color: #ffffff !important;
+}
+
+.ck-button:hover, .ck-off:hover, .ck-splitbutton__arrow:hover {
+  background: transparent !important;
+}
+
+.ck.ck-button.ck-on, .ck.ck-button.ck-on, .ck.ck-splitbutton.ck-splitbutton_open > .ck-button:not(.ck-on):not(.ck-disabled):not(:hover),
+.ck.ck-splitbutton:hover > .ck-button:not(.ck-on):not(.ck-disabled):not(:hover) {
+  background: transparent !important;
+  border-color: #ffffff;
+  border: solid 2px !important;
+}
+
+.ck.ck-balloon-panel {
+  background: #000000;
+}
+.ck.ck-balloon-panel h2, .ck.ck-balloon-panel input, .ck.ck-balloon-panel label {
+  color: #ffffff !important;
+}
+
+.ck.ck-labeled-field-view > .ck.ck-labeled-field-view__input-wrapper > .ck.ck-label {
+  background: transparent !important;
+}
+
+.ck-form__row_with-submit > .ck-button {
+  background: var(--brand-color);
+}
+
+.ck-file-dialog-button {
+  display: none !important;
+}
+
+.ck-toolbar__grouped-dropdown > .ck-dropdown__panel_sw {
+  background: #000000;
+}
+
+ul.ck-list {
+  background: #000000;
+}
+ul.ck-list .ck-list__item .ck-list-item-button, ul.ck-list .ck-list__item .ck-on {
+  background: #000000 !important;
+}/*# sourceMappingURL=ckeditor.css.map */

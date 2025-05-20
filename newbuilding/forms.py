@@ -35,6 +35,9 @@ class NewBuildingsForm(forms.ModelForm):
             "backup_power_supply",
             "shelter",
         ]
+        widgets = {
+            'bio': CKEditor5Widget(config_name='default'),
+        }
 
         labels = {
             "title": _("Title"),
@@ -68,8 +71,10 @@ class NewBuildingsForm(forms.ModelForm):
             Row(
                 Column("title", css_class="col s12"),
                 Column("bio", css_class="col s12"),
-                Column("company_name", css_class="col s6"),
-                Column("company_web", css_class="col s6"),
+            ),
+            Row (
+                Column("company_name", css_class="col s12"),
+                Column("company_web", css_class="col s12"),
             ),
             Row(
                 Column("location", css_class="col s12"),
