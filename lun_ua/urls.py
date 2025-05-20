@@ -24,7 +24,7 @@ from django.urls import include, path
 urlpatterns = i18n_patterns(
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
-    path("ckeditor/", include("ckeditor_uploader.urls")),
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("", include("core.urls")),
     path("newbuildings/", include("newbuilding.urls")),
     path("property/", include("properties.urls")),

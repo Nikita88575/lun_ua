@@ -1,4 +1,7 @@
 {% extends 'content.html' %}
+{% block header %}
+    {{ form.media }}
+{% endblock %}
 {% load i18n %}
 {% load static %}
 
@@ -15,8 +18,7 @@
             <div class="row center">
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form.media }}
-                    {{ form.as_div }}
+                    {% crispy form %}
                     <input type="submit" class="btn waves-effect waves-light" value="{% trans 'Create' %}">
                 </form>
             </div>

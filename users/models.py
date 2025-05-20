@@ -1,12 +1,12 @@
-from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.templatetags.static import static
+from django_ckeditor_5.fields import CKEditor5Field
 from django_resized import ResizedImageField
 
 
 class LunUser(AbstractUser):
-    bio = RichTextUploadingField(max_length=500, blank=True)
+    bio = CKEditor5Field(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     is_rieltor = models.BooleanField(default=False)
     phone_number = models.CharField(null=True, blank=True)
