@@ -8,9 +8,9 @@ click==8.1.8
 charset-normalizer==3.4.0
 coverage==7.6.9
 crispy-bootstrap4==2024.1
-cryptography==44.0.0
+cryptography>=44.0.1
 defusedxml==0.7.1
-Django==5.1.4
+Django==5.1.9
 django-allauth==0.62.1
 django-allauth-ui==0.3.4
 django-appconf==1.0.6
