@@ -55,7 +55,7 @@ rcssmin==1.2.1
 requests==2.32.3
 requests-oauthlib==2.0.0
 rich==13.7.1
-rich-click==1.8.8
+rich-click==1.8.9
 rjsmin==1.2.2
 six==1.16.0
 sqlparse==0.5.0
