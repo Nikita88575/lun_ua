@@ -62,7 +62,7 @@ sqlparse==0.5.3
 tomlkit==0.12.5
 types-bleach==6.2.0.20250514
 types-html5lib==1.1.11.20250516
-typing_extensions==4.10.0
+typing-extensions==4.10.0
 Unidecode==1.4.0
 urllib3==2.5.0
 wcwidth==0.2.13
