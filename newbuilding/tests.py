@@ -164,28 +164,3 @@ class UpdateNewBuildingsViewTest(TestDataMixin, TestCase):
         update_newbuilding = NewBuildings.objects.get(pk=self.newbuilding.pk)
         self.assertEqual(update_newbuilding.title, "Update title")
         self.assertEqual(update_newbuilding.bio, "Update bio")
-
-
-# class DeletePostViewTest(TestDataMixin, TestCase):
-#     def setUp(self):
-#         super().setUp()
-#         self.delete_post_view_url = reverse(
-#             "posts:delete", kwargs={"post_slug": self.post.slug}
-#         )
-
-#     def test_delete_post_get(self):
-#         self.client.force_login(self.user)
-#         response = self.client.get(self.delete_post_view_url)
-
-#         self.assertEqual(response.status_code, 200)
-#         self.assertTemplateUsed(response, "posts/post_delete.html")
-
-#     def test_delete_post_post(self):
-#         self.client.force_login(self.user)
-
-#         response = self.client.post(self.delete_post_view_url)
-
-#         self.assertEqual(response.status_code, 302)
-#         self.assertRedirects(response, reverse("categories:list"))
-
-#         self.assertFalse(Post.objects.filter(pk=self.post.pk).exists())

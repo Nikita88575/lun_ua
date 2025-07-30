@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load static %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+<div id="editUserProfileForm" style="display: none;">
+    {{ user_form.media }}
+    <form method="post" name="post-edit-form">
+        {% csrf_token %}
+        {% if user_form.non_field_errors %}
+            <div class="form-errors non-field-errors">
+                {{ user_form.non_field_errors }}
+            </div>
+        {% endif %}
+        {% for field in user_form %}
+            {% if field.name == 'bio' %}
+                <fieldset class="bio-fieldset">
+                    <legend>{{ field.label }}</legend>
+                </fieldset>
+                {{ field.errors }}
+                {{ field }}
+            {% else %}
+                <fieldset>
+                    <legend>{{ field.label }}</legend>
+                    {{ field.errors }}
+                    {{ field }}
+                </fieldset>
+            {% endif %}
+        {% endfor %}
+        <div class="update-profile-button">
+            <i class="btn btn-primary btn waves-effect waves-light submit-button waves-input-wrapper">
+                <input type="submit" name="submit" value="Update" class="waves-button-input" id="submit-id-submit">
+            </i>
+        </div>
+    </form>
+</div>

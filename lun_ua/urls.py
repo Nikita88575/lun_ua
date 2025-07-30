@@ -28,5 +28,7 @@ urlpatterns = i18n_patterns(
     path("", include("core.urls")),
     path("newbuildings/", include("newbuilding.urls")),
     path("property/", include("properties.urls")),
+    path("profiles/", include("users.urls")),
+    path("favorite/", include("favorite.urls")),
     prefix_default_language=False,
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

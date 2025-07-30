@@ -33,7 +33,7 @@
 }
 
 .company a {
-  color: #fff;
+  color: var(--primary-color);
 }
 
 .title {
@@ -44,33 +44,6 @@
 .price {
   font-weight: bold;
   font-size: 1.2rem;
-}
-
-.paginator {
-  position: relative;
-  text-align: center;
-  width: 100%;
-  padding: 20px;
-  margin-top: 20%;
-}
-.paginator .active-page, .paginator .inactive-page {
-  background-color: black;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  min-width: 50px;
-  min-height: 50px;
-}
-.paginator .prev-page, .paginator .next-page {
-  background-color: black;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  min-width: 50px;
-  min-height: 50px;
-  display: inline-block;
 }
 
 #add-newbuilding {

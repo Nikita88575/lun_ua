@@ -1,28 +1,86 @@
 .profile-page {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
 }
 
+.profile-container {
+  font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+  margin-top: 25px;
+  width: 70%;
+}
+.profile-container h1 {
+  font-size: 2rem;
+  color: var(--brand-color);
+}
+.profile-container h2 {
+  font-size: 1.5rem;
+}
+.profile-container h3 {
+  font-size: 1.2rem;
+}
+.profile-container h4 {
+  font-size: 1rem;
+}
+.profile-container #logo-container {
+  font-size: 1.5rem;
+}
+.profile-container a {
+  color: var(--primary-color);
+}
+.profile-container a:hover {
+  text-decoration: underline;
+}
+.profile-container .profile-content {
+  flex: 0.5 0 auto;
+  display: flex;
+}
+.profile-container .profile-sidebar {
+  position: relative;
+  max-width: 370px;
+  flex: 1;
+  padding: 0 1rem;
+  border-right: 1px solid var(--primary-color);
+}
+.profile-container .profile-column {
+  max-width: calc(100% - 395px);
+  flex: 1;
+}
+
+@media (max-width: 939px) {
+  .profile-content {
+    flex-direction: column;
+  }
+  .profile-sidebar {
+    position: relative !important;
+    max-width: none !important;
+    flex: 1 !important;
+    padding: 0px !important;
+    border-right: none !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .profile-column {
+    max-width: none !important;
+    overflow-wrap: break-word;
+  }
+}
 @media (max-width: 600px) {
   .user-post-info {
     overflow-x: auto;
   }
 }
 .profile-header {
-  margin-top: 5%;
-  color: rgb(255, 255, 255);
-  position: relative;
-  margin-bottom: 10px;
+  color: var(--primary-color);
   background-color: transparent;
+  position: sticky;
+  top: -16px;
 }
 
 .profile-username {
-  font-size: larger;
+  font-weight: 900;
   position: relative;
   display: block;
-  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -82,7 +140,7 @@
   min-height: 180px;
   height: auto;
   max-height: 600px;
-  color: rgb(255, 255, 255);
+  color: var(--primary-color);
   margin-top: 10px;
   margin-bottom: 10px;
   -webkit-backdrop-filter: blur(5px);
@@ -123,7 +181,7 @@
 }
 
 .social_links {
-  color: #fff;
+  color: var(--primary-color);
 }
 
 .profile-picture {
@@ -143,6 +201,96 @@
 
 .change-avatar-button {
   margin-bottom: 2%;
+}
+
+.action-btn {
+  border-radius: 8px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  background: none;
+  border: none;
+  text-decoration: none;
+  padding: 0 20px;
+  height: 48px;
+  min-width: 48px;
+  position: relative;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  transition: all 0.25s ease-out;
+  background: #000;
+  color: var(--primary-color);
+}
+
+#editUserProfileForm {
+  width: 100%;
+  padding: 0 0.8rem;
+}
+
+.update-profile-button {
+  display: flex;
+  justify-content: center;
+}
+
+label {
+  justify-content: center;
+  padding: 1.2rem !important;
+}
+
+.asteriskField {
+  color: #ff0000;
+}
+
+.django-ckeditor-widget {
+  width: 100% !important;
+}
+
+.button-block {
+  text-align: center;
+}
+
+fieldset {
+  border-radius: 0.66rem;
+  margin-top: 1.8rem !important;
+  border: 0.2rem outset grey;
+}
+fieldset input {
+  color: var(--primary-color) !important;
+  padding: 0 1.5rem !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+}
+fieldset input[type=text]:not(.browser-default), fieldset input[type=url]:not(.browser-default), fieldset input[type=number]:not(.browser-default) {
+  height: 1.5rem !important;
+}
+fieldset input::-moz-placeholder {
+  opacity: 0.5;
+  font-weight: bold;
+}
+fieldset input::placeholder {
+  opacity: 0.5;
+  font-weight: bold;
+}
+
+.bio-fieldset {
+  border-width: 0.2rem 0 0 0;
+}
+
+legend {
+  padding: 0 0.5rem !important;
+  text-align: left !important;
+  font-weight: 900;
+}
+
+input[type=submit] {
+  color: var(--primary-color) !important;
 }
 
 /*# sourceMappingURL=profile.css.map */

@@ -36,9 +36,46 @@ class NewBuildingsForm(forms.ModelForm):
             "shelter",
         ]
         widgets = {
+            "title": forms.TextInput(attrs={"placeholder": _("e.g. Obolon Residence")}),
             "bio": CKEditor5Widget(config_name="default"),
+            "company_name": forms.TextInput(
+                attrs={"placeholder": _("e.g. Company Name")}
+            ),
+            "company_web": forms.TextInput(
+                attrs={"placeholder": _("e.g. https://company.com")}
+            ),
+            "location": forms.TextInput(
+                attrs={"placeholder": _("e.g. Kyiv/Kyiv region")}
+            ),
+            "district": forms.TextInput(attrs={"placeholder": _("e.g. Obolon")}),
+            "metro_station": forms.TextInput(
+                attrs={"placeholder": _("e.g. Khreshchatyk")}
+            ),
+            "houses_count": forms.NumberInput(attrs={"placeholder": _("e.g. 1/2/3/4")}),
+            "floors_variables": forms.NumberInput(
+                attrs={"placeholder": _("e.g. 16/9 - 16")}
+            ),
+            "construction_tec": forms.TextInput(
+                attrs={"placeholder": _("e.g. Monolithic-frame")}
+            ),
+            "walls": forms.TextInput(attrs={"placeholder": _("e.g. Brick/Gas block")}),
+            "walls_insulation": forms.TextInput(
+                attrs={"placeholder": _("e.g. Mineral wool/Foam plastic")}
+            ),
+            "project_heating": forms.TextInput(
+                attrs={"placeholder": _("e.g. Autonomous/Individual")}
+            ),
+            "ceiling_height": forms.NumberInput(attrs={"placeholder": _("e.g. 2/2.8")}),
+            "apartament_count": forms.NumberInput(
+                attrs={"placeholder": _("e.g. 1234/1 234")}
+            ),
+            "parking": forms.TextInput(attrs={"placeholder": _("e.g. Private/Guest")}),
+            "parking_places": forms.NumberInput(attrs={"placeholder": _("e.g. 333")}),
+            "backup_power_supply": forms.TextInput(
+                attrs={"placeholder": _("e.g. Enabled/Disabled")}
+            ),
+            "shelter": forms.TextInput(attrs={"placeholder": _("e.g. Parking/Vault")}),
         }
-
         labels = {
             "title": _("Title"),
             "bio": _("Bio"),
@@ -104,6 +141,11 @@ class NewBuildingsForm(forms.ModelForm):
             Row(
                 Column("backup_power_supply", css_class="col s12"),
                 Column("shelter", css_class="col s12"),
+            ),
+            Submit(
+                "submit",
+                "Create",
+                css_class="btn waves-effect waves-light submit-button",
             ),
         )
         self.field_order = [

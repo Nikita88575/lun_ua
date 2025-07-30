@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load static %}
+{% load humanize %}
 
 {% block title %}
   {% trans "Home" %}
 {% endblock %}
 
 {% block link %}
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
 {% endblock %}
 
 {% block body %}
@@ -16,7 +17,7 @@
       <div class="section">
         <div class="row">
           <div class="col s12 center">
-            <h1 id="slogan">{% trans "PY_JUNE - Code, Learn, and Grow Together!" %}</h1>
+            <h1 id="slogan">{% trans "Random new buildings that may interest you !" %}</h1>
           </div>
         </div>
       </div>
@@ -24,15 +25,48 @@
 
     <div id="index-banner" class="parallax-container">
       <div class="section">
-        <div class="container">
-          <div class="row center">
-            <h3
-              class="header col s12 light">{% trans "There should be one-- and preferably only one --obvious way to do it." %}</h3>
-          </div>
-          <div class="row center">
-            <a href=""
-               class="btn waves-effect"><h4>{% trans "Ask question" %}</h4></a>
-          </div>
+        <div class="container random-newbuildings">
+          {% for building in buildings %}
+            <div class="row">
+              <div class="col s12 m6">
+                <div class="newbuilding-card">
+                  <div class="card-inner">
+                    <img src="{% if building.image %}/media/{{ building.image }}{% else %}{% static 'images/default_render_uk.png' %}{% endif %}" alt="Image">
+                  </div>
+                    <div class="card-bottom">
+                      <div class="card-row">
+                        <div class="card-developer">
+                          <h4 class="card-developer-text">
+                            <a href="{{ building.company_web }}">
+                              {{ building.company_name }}
+                            </a>
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="card-title">
+                        <h3>{{ building.title }}</h3>
+                        <div class="card-district">
+                          <h4>{{ building.district }}</h4>
+                        </div>
+                      </div>
+                      <div class="card-price">
+                        <h3>
+                        {% if building.min_price_value %}
+                          {% trans "From" %} $ {{ building.min_price_value|intcomma }}
+                        {% else %}
+                          {% trans "Unknown" %}
+                        {% endif %}
+                        </h3>
+                      </div>
+                      <div class="card-location">
+                        <h4>{{ building.metro_station }}</h4>
+                      </div>
+                    </div>
+                  <a class="card-link" href="{% url 'newbuilding:details' newbuilding_slug=building.slug %}"></a>
+                </div>
+              </div>
+            </div>
+         {% endfor %}
         </div>
       </div>
       <div class="parallax"><img src="{% static 'images/background3.jpg' %}" alt=""></div>
@@ -179,8 +213,8 @@
 {% endblock %}
 
 {% block script %}
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/js.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/javascript.min.js"></script>
   <script>hljs.highlightAll();</script>
 {% endblock %}

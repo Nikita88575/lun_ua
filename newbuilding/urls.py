@@ -4,6 +4,7 @@ from .views import (
     NewBuildingCreateView,
     NewBuildingDetailsView,
     NewBuildingListView,
+    NewBuildingProjectDetailsModalView,
     NewBuildingProjectDetailsView,
     NewBuildingUpdateView,
 )
@@ -23,5 +24,10 @@ urlpatterns = [
         "<slug:newbuilding_slug>/<str:rooms_count>/",
         NewBuildingProjectDetailsView.as_view(),
         name="project-details",
+    ),
+    path(
+        "<slug:newbuilding_slug>/<str:rooms_count>/<int:room_id>/",
+        NewBuildingProjectDetailsModalView.as_view(),
+        name="project-modal",
     ),
 ]

@@ -1,0 +1,75 @@
+{% extends 'content.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {{ user.username }}
+{% endblock %}
+
+{% block link %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.css">
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile_favorite_list.css' %}">
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="profile-page">
+    <div class="profile-container">
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="row center">
+                        <img src="{{ user.get_avatar_url }}" class="rounded-circle profile-picture" width="256" height="256">
+                        
+                        {% if user.username == request.user.username %}
+                            <div class="action-btn">
+                                <a id="editUserProfileButton">
+                                    <i class="tiny material-icons">
+                                        edit
+                                    </i>
+                                    Edit
+                                </a>
+                            </div>
+                            <a href="{% url 'users:profile' profile=request.user.username %}" class="btn red waves-effect waves-light action-btn" style="display: none; margin-top: 1rem;" id="cancelUpdateButton">{% trans "Cancel" %}</a>                            
+                        {% endif %}
+                    </div>
+        
+                    <h6 class="user-first-last-name">{{ user.first_name }} {{ user.last_name }}</h6>
+                    <h3 class="profile-username">@{{ user.username }}</h3>
+        
+                    {% if context.bio %}
+                        <h6 class="profile-bio-title">Bio:</h6>
+                        <div class="profile-bio">{{ user.bio|safe }}</div>
+                    {% else %}
+                        <h6 class="empty-profile-bio">No bio</h6>
+                    {% endif %}
+                    
+                </div>
+            </div>
+
+            {% include 'ui/user/user_update.html' %}
+
+            <div id="projects-container" class="row" data-has-next="{{ page_obj.has_next|lower }}" style="display: block;">
+                {% include 'ui/user/favorite_projects_list.html' with page_obj=page_obj %}
+            </div>
+
+            <div id="loading-indicator" style="text-align: center; display: none;">
+                <h1>{% trans "Loading" %}...</h1>
+            </div>
+
+            <div class="project-modal-container plan-modal" id="project-modal-container">
+                <div class="project-modal-content" id="project-modal-content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+  <script src="{% static 'js/projects_loading.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.js"></script>
+  <script src="{% static 'js/modal_window.js' %}"></script>
+  <script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}
+{% endblock %}

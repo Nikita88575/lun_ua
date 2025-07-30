@@ -6,8 +6,9 @@
 {% load crispy_forms_tags %}
 
 {% block link %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
     <link rel="stylesheet" href="{% static 'css/newbuilding_details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/newbuilding_form.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -23,12 +24,14 @@
                 <div class="contacts">
                     <div class="contacts-content">
 
+                        {% include 'ui/newbuildings/newbuildings_update.html' %}
+
                         <div id="deleteNBForm" style="display: none;">
                             <form method="post">
                                 {% csrf_token %}
                                 <p>{% trans "Are you sure you want to delete " %} "{{ project.title }}" ?</p>
                                 <div style="display: none;">
-                                    {{ newbuilding_form }}
+                                    {{ newbuilding_form|safe }}
                                 </div>
                                 <button type="submit" class="btn waves-effect waves-light" name="delete">{% trans "Confirm" %}</button>
                                 <a href="{% url 'newbuilding:details' newbuilding_slug=project.slug %}" class="btn red waves-effect waves-light"
@@ -136,12 +139,14 @@
                         <li class="action-buttons">
                             {% if user.is_authenticated %}
                                 {% if user.id == project.rieltor.id %}
-                                    <a href="{% url 'newbuilding:update' newbuilding_slug=project.slug %}" class="btn btn-small waves-effect waves-light">
-                                        <i class="tiny material-icons">
-                                            edit
-                                        </i>
-                                        Edit
-                                    </a>
+                                    <div class="action-btn">
+                                        <a id="editNBBtn">
+                                            <i class="tiny material-icons">
+                                                edit
+                                            </i>
+                                            Edit
+                                        </a>
+                                    </div>
 
                                     <!-- <button class="btn btn-small">
                                         <i class="tiny material-icons">
@@ -149,13 +154,14 @@
                                         </i>
                                         Add a photo
                                     </button> -->
-
-                                    <button class="btn btn-small" id="deleteNBBtn">
-                                        <i class="tiny material-icons">
-                                            delete
-                                        </i>
-                                        Delete
-                                    </button>
+                                    <div class="action-btn">
+                                        <a id="deleteNBBtn">
+                                            <i class="tiny material-icons">
+                                                delete
+                                            </i>
+                                            Delete
+                                        </a>
+                                    </div>
                                 {% endif %}
                             {% endif %}
                         </li>
@@ -245,59 +251,74 @@
                         </td>
             
                         <td style="text-align: center;">
-                            {% if info.solded == info.max_area %}
+                            {% if info.solded == "true" %}
+                                {% trans "Solded" %}
 
                             {% elif info.min_area == info.max_area %}
                                 {{ info.min_area }} m<sup>2</sup>
+
                             {% else %}
-                                {{ info.min_area }} - {{ info.max_area }} m<sup>2</sup>                            
+                                {{ info.min_area }} - {{ info.max_area }} m<sup>2</sup>   
+
                             {% endif %}
                             </td>
             
                         <td style="text-align: center;">
-                            {% if info.min_price == info.max_price %}
-                                {% if info.min_price < 1000000 %}
-                                    {{ info.min_price|intcomma }} $/m<sup>2</sup>
-                                {% elif info.solded is true %}
+                            {% if info.solded == "true" %}
+                                Solded
 
+                            {% elif info.min_price_per_sqrm == info.max_price_per_sqrm %}
+                                {% if info.min_price_per_sqrm < 1000000 %}
+                                    {{ info.min_price_per_sqrm|intcomma }} $/m<sup>2</sup>
+                                
                                 {% else %}
-                                    {{ info.min_price|intword }} $/m<sup>2</sup>
+                                    {{ info.min_price_per_sqrm|intword }} $/m<sup>2</sup>
+
                                 {% endif %}
+
                             {% else %}
-                                {% if info.min_price < 1000000 %}
-                                    {{ info.min_price|intcomma }} 
-                                {% elif info.solded is true %}
-                                    
+                                {% if info.min_price_per_sqrm < 1000000 %}
+                                    {{ info.min_price_per_sqrm|intcomma }} 
+                                
                                 {% else %}
-                                    {{ info.min_price|intword }}
+                                    {{ info.min_price_per_sqrm|intword }}
+
                                 {% endif %}
                                 - 
-                                {% if info.max_price < 1000000 %}
-                                    {{ info.max_price|intcomma }} $/m<sup>2</sup>
-                                {% elif info.solded is true %}
+                                {% if info.max_price_per_sqrm < 1000000 %}
+                                    {{ info.max_price_per_sqrm|intcomma }} $/m<sup>2</sup>
 
                                 {% else %}
-                                    {{ info.max_price|intword }} $/m<sup>2</sup>
+                                    {{ info.max_price_per_sqrm|intword }} $/m<sup>2</sup>
+
                                 {% endif %} 
                             {% endif %}
                         </td>
             
                         <td style="text-align: center;">
-                            {% if info.min_price < 1000000 %}
-                                from $ {{ info.min_price|intcomma }}
-                            {% elif info.solded is true %}
+                            {% if info.solded == "true" %}
                                 {% trans "Solded" %}
+
+                            {% elif info.min_price < 1000000 %}
+                                from $ {{ info.min_price|intcomma }}
+
                             {% else %}
                                 from $ {{ info.min_price|intword }}
+
                             {% endif %}
                         </td>
             
-                        <td style="text-align: center;">
-                            <a href="{% url 'newbuilding:project-details' project.slug info.apartament_type %}">
-                                <i class="small material-icons">
-                                    navigate_next
-                                </i>
-                            </a>
+                        <td style="text-align: center;" class="project-details-redirect">
+                            {% if info.solded == "true" %}
+                                {% trans "Solded" %}
+                                
+                            {% else %}
+                                <a href="{% url 'newbuilding:project-details' project.slug info.apartament_type %}">
+                                    <i class="small material-icons">
+                                        navigate_next
+                                    </i>
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -315,9 +336,9 @@
 
 
 {% block scripts %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/javascript.min.js"></script>
     <script src="{% static 'js/newbuildings.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/slider.js' %}"></script>
 {% endblock %}

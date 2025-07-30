@@ -23,10 +23,10 @@
   background-color: rgba(0, 0, 0, 0.4);
   -webkit-backdrop-filter: blur(55px) !important;
           backdrop-filter: blur(55px) !important;
-  color: #fff;
+  color: var(--primary-color);
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-content-body {
-  color: #fff;
+  color: var(--primary-color);
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-content-body .contacts-header {
   display: flex;
@@ -34,6 +34,9 @@
   width: 100%;
   margin-bottom: 8px;
   justify-content: space-between;
+}
+.contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-content-body .contacts-header .title {
+  margin-top: 0rem !important;
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-content-body .contacts-header #deleteNBForm {
   margin-bottom: 25px !important;
@@ -50,10 +53,10 @@
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-content-body .contacts-main-address .address {
   margin-top: -4%;
-  color: #fff;
+  color: var(--primary-color);
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-details {
-  color: #fff;
+  color: var(--primary-color);
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-details .sales-center-content {
   display: flex;
@@ -139,7 +142,7 @@
   letter-spacing: 0.2px;
   transition: all 0.25s ease-out;
   background: #000;
-  color: #fff;
+  color: var(--primary-color);
 }
 .contacts-column .contacts-column-aside .contacts-main .contacts .contacts-content .contacts-details .contacts-actions .contacts-actions-row .contacts-action .contacts-icon {
   margin-right: 8px;
@@ -153,6 +156,10 @@
 .contacts-column .contacts-column-aside .contacts-main .action-buttons {
   justify-content: space-between;
   display: flex;
+}
+.contacts-column .contacts-column-aside .contacts-main .btn {
+  background-color: #000;
+  color: var(--primary-color);
 }
 .contacts-column .contacts-column-main {
   width: calc(100% - 400px);
@@ -216,7 +223,7 @@
   padding: 8px 30px;
   margin-bottom: 20px;
   min-height: 66px;
-  color: #fff;
+  color: var(--primary-color);
   background: #000;
   border-radius: 8px;
 }
@@ -251,7 +258,7 @@
 
 .project-prices-table td {
   background-color: #000;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid var(--primary-color);
 }
 
 @media (max-width: 1024px) {
@@ -294,15 +301,48 @@
   }
 }
 input {
-  color: #fff !important;
+  color: var(--primary-color) !important;
 }
 
 select {
   display: flex !important;
   background-color: transparent;
   border: none;
-  color: #fff;
+  color: var(--primary-color);
   text-align: center;
   justify-content: center;
   width: -moz-available !important;
+}
+
+.project-details-redirect:hover {
+  background-color: var(--primary-color);
+  opacity: 0.5;
+}
+.project-details-redirect:hover a {
+  color: #000;
+}
+
+.action-btn {
+  justify-content: center;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  background: none;
+  border: none;
+  text-decoration: none;
+  padding: 0 20px;
+  height: 48px;
+  min-width: 48px;
+  position: relative;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 22px;
+  letter-spacing: 0.2px;
+  transition: all 0.25s ease-out;
+  background: #000;
+  color: var(--primary-color);
 }/*# sourceMappingURL=newbuilding_details.css.map */

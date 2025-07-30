@@ -11,7 +11,7 @@
       <link rel="icon" type="image/x-icon" sizes="16x16" href="{% static 'images/favicon.ico' %}">
       {% block link %}
       {% endblock %}
-      <title></title>
+      <title>{% block title %}{% endblock %}</title>
     </head>
 
     <body>

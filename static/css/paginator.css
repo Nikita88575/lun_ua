@@ -1,0 +1,35 @@
+.paginator {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  padding: 2rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.paginator .active-page, .paginator .inactive-page {
+  background-color: black;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-width: 50px;
+  min-height: 50px;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+.paginator .prev-page, .paginator .next-page {
+  background-color: black;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  min-width: 50px;
+  min-height: 50px;
+  display: inline-block;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+.paginator a:hover {
+  text-decoration: none;
+}/*# sourceMappingURL=paginator.css.map */

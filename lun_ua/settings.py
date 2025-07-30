@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django_extensions",
     "bleach",
     "crispy_forms",
-    "crispy_bootstrap4",
+    "crispy_bootstrap5",
     "allauth_ui",
     "allauth",
     "allauth.account",
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
     "users.apps.UsersConfig",
     "newbuilding.apps.NewbuildingConfig",
     "properties.apps.PropertiesConfig",
+    "favorite.apps.FavoriteConfig",
 ]
 
 MIDDLEWARE = [
@@ -153,6 +155,8 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+FORMS_URLFIELD_ASSUME_HTTPS = True
 
 customColorPalette = [
     {"color": "hsl(4, 90%, 58%)", "label": "Red"},
@@ -313,10 +317,10 @@ AUTH_USER_MODEL = "users.LunUser"
 LOGIN_URL = "/accounts/login/"
 
 # crispy forms
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-OFFERS_PAGINATION_PER_PAGE = 4
+OFFERS_PAGINATION_PER_PAGE = 12
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",

@@ -4,18 +4,61 @@
 {% load humanize %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'css/newbuilding_list.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.css">
+  <link rel="stylesheet" href="{% static 'css/newbuilding_project_details.css' %}">
+  <link rel="stylesheet" href="{% static 'css/paginator.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.css">
+  <link rel="stylesheet" href="{% static 'css/no_ui_slider.css' %}">
 {% endblock %}
 
 {% block title %}
-  {% trans "New Build" %}
+  {% trans "Plannings" %} of {{ rooms_count }} {% trans "apartaments" %}
 {% endblock %}
 
 {% block body %}
 <div class="container content">
-    <div class="row">
-        
+  <div class="row">
+    <h1 class="project-rooms-count-title">
+      {% trans "Plannings" %} of {{ rooms_count }} {% trans "apartaments" %}
+    </h1>
+    <div class="area-slider-row">
+      <fieldset class="area-slider-wrapper">
+        <legend>{% trans "Area" %} m<sup>2</sup></legend>
+        <div class="area-slider-content">
+          <div class="area-slider-value">
+            <span id="areaFromValue">{{ area_from }}</span>
+            –
+            <span id="areaToValue">{{ area_to }}</span> m<sup>2</sup>
+          </div>
+          <div id="areaSlider"
+              data-min="{{ area_min }}"
+              data-max="{{ area_max }}"
+              data-from="{{ area_from }}"
+              data-to="{{ area_to }}"></div>
+        </div>
+      </fieldset>
     </div>
+
+    <div id="projects-container" class="row" data-has-next="{{ page_obj.has_next|lower }}"
+>
+      {% include 'ui/newbuildings/newbuildings_project_details_list.html' with page_obj=page_obj new_building=new_building %}
+    </div>
+
+    <div id="loading-indicator" style="text-align:center; display:none;">
+      <h1>{% trans "Loading" %}...</h1>
+    </div>
+    <div class="project-modal-container plan-modal" id="project-modal-container">
+      <div class="project-modal-content" id="project-modal-content"></div>
+    </div>
+  </div>
 </div>
 
+{% block scripts %}
+  <script src="{% static 'js/projects_loading.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.0/dist/nouislider.min.js"></script>
+  <script src="{% static 'js/area_slider.js' %}"></script>
+  <script src="{% static 'js/modal_window.js' %}"></script>
 {% endblock %}
+{% endblock %}
+

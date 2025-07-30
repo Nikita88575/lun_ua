@@ -1,0 +1,55 @@
+[
+    {
+        "model": "newbuilding.newbuildings",
+        "pk": 1,
+        "fields": {
+            "title": "Test",
+            "slug": "test",
+            "bio": "Test",
+            "location": "Test",
+            "district": "Test",
+            "metro_station": "Test",
+            "company_name": "Test",
+            "company_web": "https://test.com",
+            "apartament_classes": "Comfort",
+            "houses_count": 1,
+            "floors_variables": 16,
+            "construction_tec": "Test",
+            "walls": "Test",
+            "walls_insulation": "Test",
+            "project_heating": "Test",
+            "ceiling_height": 2.8,
+            "apartament_count": 123,
+            "housing_condition": "With renovation",
+            "parking": "Test",
+            "parking_places": 12,
+            "backup_power_supply": "Test",
+            "shelter": "Test",
+            "rieltor": 1,
+            "company_image": "",
+            "created_at": "2025-05-21 18:37:14",
+            "updated_at": "2025-05-21 18:37:14",
+            "is_active": "True"
+        }
+    },
+    {
+        "model": "newbuilding.newbuildingsprojects",
+        "pk": 1,
+        "fields": {
+            "offer": 1,
+            "apartament_type": "1-room",
+            "state": "Builded",
+            "price_per_sqrm": "1234",
+            "area": 12.3,
+            "solded": "False",
+            "apartament_floor": 1,
+            "apartament_number": 1,
+            "final_build_date": "2026-01-23",
+            "aprtament_bedrooms_count": 1,
+            "created_at": "2025-05-21 18:40:00",
+            "updated_at": "2025-05-21 18:40:00",
+            "is_active": "True"
+
+        }
+    }
+]

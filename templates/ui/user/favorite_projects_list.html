@@ -1,0 +1,95 @@
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% for project in page_obj %}
+    <div class="col s12 m6">
+        <div class="project-card">
+            <div class="project-card-inner">
+                <picture class="project-card-image">
+                <img src="{% static 'images/image.png' %}">
+                </picture>
+            </div>
+
+            <div class="project-card-content">
+                {% if project.apartament_number %}
+                    <div class="project-price">
+                        {% if project.project_price < 1000000 %}
+                            <h1>{{ project.project_price|intcomma }} $</h1>
+                            
+                        {% else %}
+                            <h1>{{ project.project_price|intword }} $</h1>
+
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="project-price-per-msqure">
+                        {% if project.price_per_sqrm < 1000000 %}
+                            <h1>{{ project.price_per_sqrm|intcomma }} $ for m<sup>2</sup></h1>
+
+                        {% else %}
+                            <h1>{{ project.price_per_sqrm|intword }} $ for m<sup>2</sup></h1>
+
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
+                <div class="project-card-items">
+                    <div class="project-card-column">
+                        <div class="project-card-item">
+                            <div class="project-card-item-description">
+                                {% trans project.apartament_type %}
+                            </div>
+                        </div>
+
+                        <div class="project-card-item">
+                            <i class="material-icons" style="font-size: 22px;">crop_free</i>
+                            <div class="project-card-item-description">
+                                {{ project.area }} m<sup>2</sup>
+                            </div>
+                        </div>
+
+                        <div class="project-card-item">
+                            <div class="project-card-item-description">
+                                {% if project.apartament_floor %}
+                                    {% trans "Floor" %}: {{ project.apartament_floor }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card-column">
+                        <div class="project-card-item">
+                            <div class="project-card-item-description">
+                                {% trans "Apt." %} {{ project.apartament_number }}
+                            </div>
+                        </div>
+
+                        <div class="project-card-item">
+                            <div class="project-card-item-description">
+                                {% trans project.state %}
+                            </div>
+                        </div>
+                        {% if project.state == "Build" %}
+                            <div class="project-card-item">
+                                <div class="project-card-item-description">
+                                    {{ project.final_build_date|date:"d.m.Y" }}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="favorite-button">
+                {% include 'ui/favorite/add_to_favorite.html' with project=project %}
+            </div>
+            <a href="?room_id={{ project.id }}" class="project-card-link" data-url="{% url 'newbuilding:project-modal' project.offer.slug project.apartament_type project.id %}"></a>
+        </div>
+    </div>
+{% empty %}
+    <div class="col s12">
+        <h1 class="project-no-plannings">
+            {% trans "No favorite projects here" %}
+        </h1>
+    </div>
+{% endfor %}

@@ -47,7 +47,7 @@ startdb:
 setupdb:
 	@echo "Setting up database..."
 	python manage.py migrate
-	python manage.py loaddata categories.json
+	python manage.py loaddata newbuilding.json
 
 .PHONY: stopdb
 stopdb:

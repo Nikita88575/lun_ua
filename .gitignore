@@ -165,3 +165,5 @@ staticfiles
 terraform.*
 *.pem
 media/
+*.jpg
+*.png

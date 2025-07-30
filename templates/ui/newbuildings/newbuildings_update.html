@@ -1,0 +1,40 @@
+{% load i18n %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/newbuilding_form.css' %}">
+{% endblock %}
+
+<div id="editNBForm" style="display: none;">
+    {{ newbuilding_form.media }}
+    <form method="post" name="post-edit-form">
+        {% csrf_token %}
+        {% if newbuilding_form.non_field_errors %}
+            <div class="form-errors non-field-errors">
+                {{ newbuilding_form.non_field_errors }}
+            </div>
+        {% endif %}
+        {% for field in newbuilding_form %}
+            {% if field.name == 'bio' %}
+                <fieldset class="bio-fieldset">
+                    <legend>{{ field.label }}</legend>
+                </fieldset>
+                {{ field.errors }}
+                {{ field }}
+            {% else %}
+                <fieldset>
+                    <legend>{{ field.label }}</legend>
+                    {{ field.errors }}
+                    {{ field }}
+                </fieldset>
+            {% endif %}
+        {% endfor %}
+        <div class="button-block">
+            <button type="submit" class="btn waves-effect waves-light submit-button newbuilding-btn" name="edit">
+                {% trans "Update" %}
+            </button>
+        </div>
+    </form>
+</div>

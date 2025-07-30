@@ -23,7 +23,7 @@ class NewBuildings(SlugModel):
             _("With renovation, Without renovation"),
         ),
     )
-    title = models.CharField(max_length=128)
+    title = models.CharField(max_length=128, unique=True)
     bio = CKEditor5Field(config_name="default")
     location = models.CharField(max_length=50)
     district = models.CharField(max_length=256)
@@ -44,8 +44,6 @@ class NewBuildings(SlugModel):
     parking_places = models.IntegerField(null=True)
     backup_power_supply = models.CharField(max_length=100, null=True, blank=True)
     shelter = models.CharField(max_length=100, null=True, blank=True)
-    first_apartamen_floor = models.IntegerField(null=True, blank=True)
-    last_apartamen_floor = models.IntegerField(null=True, blank=True)
     rieltor = models.ForeignKey("users.LunUser", on_delete=models.CASCADE)
     company_image = models.ImageField(
         upload_to="companies_logos/", null=True, blank=True
@@ -87,10 +85,10 @@ class NewBuildingsPhoto(models.Model):
 class NewBuildingsProjects(models.Model):
     CHOICES = (
         (_("1-room"), _("1-room")),
-        (_("2-room"), _("2-room")),
-        (_("3-room"), _("3-room")),
-        (_("4-room"), _("4-room")),
-        (_("5-room"), _("5-room")),
+        (_("2-rooms"), _("2-rooms")),
+        (_("3-rooms"), _("3-rooms")),
+        (_("4-rooms"), _("4-rooms")),
+        (_("5-rooms"), _("5-rooms")),
     )
     STATES = (
         (_("Builded"), _("Builded")),
@@ -104,9 +102,8 @@ class NewBuildingsProjects(models.Model):
     price_per_sqrm = models.IntegerField(null=True, blank=True)
     area = models.FloatField(null=True, blank=True)
     solded = models.BooleanField(default=False)
-    apartamen_floor = models.CharField(null=True, blank=True)
-    last_apartamen_floor = models.IntegerField(null=True, blank=True)
-    apartamen_number = models.CharField(null=True, blank=True)
+    apartament_floor = models.CharField(null=True, blank=True)
+    apartament_number = models.CharField(null=True, blank=True)
     final_build_date = models.DateField(null=True, blank=True)
     aprtament_bedrooms_count = models.IntegerField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

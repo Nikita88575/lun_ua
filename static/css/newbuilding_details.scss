@@ -22,10 +22,10 @@
                     padding: 20px;
                     background-color: rgba(0, 0, 0, 0.4);
                     backdrop-filter: blur(55px) !important;
-                    color: #fff;
+                    color: var(--primary-color);
 
                     .contacts-content-body {
-                        color: #fff;
+                        color: var(--primary-color);
 
                         .contacts-header {
                             display: flex;
@@ -33,6 +33,10 @@
                             width: 100%;
                             margin-bottom: 8px;
                             justify-content: space-between;
+
+                            .title {
+                                margin-top: 0rem !important;
+                            }
 
                             #deleteNBForm {
                                 margin-bottom: 25px !important;
@@ -52,13 +56,13 @@
 
                             .address {
                                 margin-top: -4%;
-                                color: #fff;
+                                color: var(--primary-color);
                             }
                         }
                     }
 
                     .contacts-details {
-                        color: #fff;
+                        color: var(--primary-color);
 
                         .sales-center-content {
                             display: flex;
@@ -154,7 +158,7 @@
                                         letter-spacing: .2px;
                                         transition: all .25s ease-out;
                                         background: #000;
-                                        color: #fff;
+                                        color: var(--primary-color);
                                     }
 
                                     .contacts-icon {
@@ -177,6 +181,11 @@
             .action-buttons {
                 justify-content: space-between;
                 display: flex;
+            }
+
+            .btn {
+                background-color: #000;
+                color: var(--primary-color);
             }
         }
     }
@@ -248,7 +257,7 @@
     padding: 8px 30px;
     margin-bottom: 20px;
     min-height: 66px;
-    color: #fff;
+    color: var(--primary-color);
     background: #000;
     border-radius: 8px;
 
@@ -289,7 +298,7 @@
 
 .project-prices-table td {
     background-color: #000;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--primary-color);
 }
 
 
@@ -342,15 +351,49 @@
 }
 
 input {
-    color: #fff !important;
+    color: var(--primary-color) !important;
 }
 
 select {
     display: flex !important;
     background-color: transparent;
     border: none;
-    color: #fff;
+    color: var(--primary-color);
     text-align: center;
     justify-content: center;
     width: -moz-available !important;
+}
+
+.project-details-redirect:hover {
+    background-color: var(--primary-color);
+    opacity: 0.5;
+
+    a {
+        color: #000;
+    }
+}
+
+.action-btn {
+    justify-content: center;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    background: none;
+    border: none;
+    text-decoration: none;
+    padding: 0 20px;
+    height: 48px;
+    min-width: 48px;
+    position: relative;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: .2px;
+    transition: all .25s ease-out;
+    background: #000;
+    color: var(--primary-color);
 }

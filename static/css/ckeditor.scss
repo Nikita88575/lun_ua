@@ -1,18 +1,38 @@
 .ck.ck-editor__main>.ck-editor__editable, .ck.ck-toolbar {
-    background: transparent;
+    background: var(--primary-bg-color);
+}
+
+.ck.ck-editor__top .ck-sticky-panel .ck-sticky-panel__content {
+    border: revert;
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+    border: revert;
+
+    p {
+        line-height: 0.8rem !important;
+    }
 }
 
 .ck-editor-container>.word-count, .ck-balloon-panel_position_border-side_right {
     display: none !important;
 }
 
+// ckeditor textfield
 .ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
-    border-color: #ffffff !important;
+    border-color: var(--primary-color) !important;
+    color: var(--primary-color) !important;
+
+    p {
+        line-height: 0.8rem !important;
+    }
 }
 
 .ck-button, .ck-off {
-    color: #ffffff !important;
+    color: var(--primary-color) !important;
 }
+
+// .ck.ck-icon
 
 .ck-button:hover, .ck-off:hover, .ck-splitbutton__arrow:hover {
     background: transparent !important;
@@ -21,7 +41,7 @@
 .ck.ck-button.ck-on, .ck.ck-button.ck-on, .ck.ck-splitbutton.ck-splitbutton_open>.ck-button:not(.ck-on):not(.ck-disabled):not(:hover), 
 .ck.ck-splitbutton:hover>.ck-button:not(.ck-on):not(.ck-disabled):not(:hover) {
     background: transparent !important;
-    border-color: #ffffff;
+    border-color: var(--primary-color);
     border: solid 2px !important;
 }
 
@@ -29,7 +49,7 @@
     background: #000000;
     
     h2, input, label {
-        color: #ffffff !important;
+        color: var(--primary-color) !important;
     }
 }
 
@@ -59,5 +79,16 @@ ul.ck-list {
             background: #000000 !important;
         }
     
+    }
+}
+
+.ck-list-properties {
+    background: #000000 !important
+}
+
+.ck.ck-labeled-field-view.ck-labeled-field-view_full-width {
+
+    input {
+        padding: 1rem 0.2rem 0rem !important;
     }
 }

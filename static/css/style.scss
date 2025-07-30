@@ -17,6 +17,9 @@
   --brand-second-color: #187f58;
   --btn-color: #0e1117;
 }
+* {
+  box-sizing: border-box !important;
+}
 
 strong {
   font-weight: bold;
@@ -195,6 +198,100 @@ footer.page-footer {
   }
 }
 
+@media only screen and (min-width: 601px) {
+  .random-newbuildings .row .col.m6 {
+    margin-left: unset !important;
+    max-width: 500px;
+  }
+}
+
+.random-newbuildings .row .col.s12 {
+  margin-left: unset !important;
+  max-width: 500px;
+}
+
+.random-newbuildings .row {
+  display: flex !important;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 12px;
+}
+
+.random-newbuildings .col {
+  flex: 0 0 auto;
+  min-width: 280px;
+}
+
+.newbuilding-card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(1rem);
+  color: #000;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.card-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-bottom {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-developer-text {
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-developer-text a {
+  color: #000;
+  text-decoration: none;
+}
+
+.card-title h3 {
+  font-size: 20px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.card-district h4,
+.card-price h3,
+.card-location h4 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.card-price h3 {
+  font-weight: bold;
+  color: #000;
+}
+
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
 .page-footer {
   background-color: var(--primary-bg-color);
 
@@ -279,18 +376,18 @@ footer.page-footer {
 }
 
 label {
-  color: #fff;
+  color: var(--primary-color);
   font-size: medium;
   display: flex;
 }
 
 .alert {
-  color: #fff;
+  color: var(--primary-color);
   font-size: medium;
 }
 
 .invalid-feedback {
-  color: #fff;
+  color: var(--primary-color);
   font-size: medium;
 }
 
@@ -373,7 +470,7 @@ footer a {
   right: 50px;
   z-index: 1000;
   background-color: #26a69a;
-  color: #ffffcc;
+  color: var(--primary-color)fcc;
   border: none;
   border-radius: 10px;
   padding: 10px 15px;
