@@ -60,7 +60,7 @@ rich-click==1.8.9
 rjsmin==1.2.2
 six==1.17.0
 sqlparse==0.5.3
-tomlkit==0.12.5
+tomlkit==0.13.3
 types-bleach==6.2.0.20250514
 types-html5lib==1.1.11.20250516
 typing-extensions==4.14.1
