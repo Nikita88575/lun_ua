@@ -62,7 +62,7 @@ six==1.17.0
 sqlparse==0.5.3
 tomlkit==0.13.3
 types-bleach==6.2.0.20250514
-types-html5lib==1.1.11.20250516
+types-html5lib==1.1.11.20250708
 typing-extensions==4.14.1
 Unidecode==1.4.0
 urllib3==2.5.0
