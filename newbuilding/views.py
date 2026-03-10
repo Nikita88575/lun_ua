@@ -238,9 +238,9 @@ class NewBuildingProjectDetailsView(View):
             ),
             is_favorited=Exists(
                 NewBuildingsProjectsFavorite.objects.filter(
-                    user=self.request.user, project=OuterRef("pk")
+                    user=self.request.user.id, project=OuterRef("pk")
                 )
-            ),
+            )
         )
 
         area_min = projects.aggregate(Min("area"))["area__min"]

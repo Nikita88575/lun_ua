@@ -27,7 +27,7 @@
         </a>
       </li>
 
-      {% if user.is_authenticated %}
+      {% if request.user.is_authenticated %}
 
         <li>
           <a href="{% url 'users:profile' request.user.username %}">
@@ -72,7 +72,7 @@
         </a>
       </li>
 
-      {% if user.is_authenticated %}
+      {% if request.user.is_authenticated %}
         <li>
           <a href="{% url 'users:profile' request.user.username %}">
             {% trans "My LUN" %}

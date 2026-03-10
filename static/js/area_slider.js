@@ -1,8 +1,8 @@
 const slider = document.getElementById('areaSlider');
 const fromSpan = document.getElementById('areaFromValue');
 const toSpan = document.getElementById('areaToValue');
-const projectsContainer = document.getElementById('projectsContainer');
-const loadingIndicator = document.getElementById('loading');
+const projectsContainer = document.getElementById('projects-container');
+const loadingIndicator = document.getElementById('loading-indicator');  
 
 const params = new URLSearchParams(window.location.search);
 const areaMin = parseFloat(slider.dataset.min);

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let loading = false;
 
   const projectsContainer = document.getElementById('projects-container');
-  const loadingIndicator = document.getElementById('loading-indicator');
+const loadingIndicator = document.getElementById('loading-indicator');  
 
   if (!projectsContainer) return;
 
